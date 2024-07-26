@@ -18,7 +18,7 @@ main =
                             render <|
                                 \globalState ->
                                     Html.div []
-                                        [ Html.button [ Html.Events.onClick <| (globalState |> count.set ((globalState |> .get count) + 1)) ] [ Html.text "+" ]
+                                        [ Html.button [ Html.Events.onClick <| (globalState |> count.set ((globalState |> count.get) + 1)) ] [ Html.text "+" ]
                                         , Html.p [] [ Html.text <| String.fromInt <| (globalState |> count.get) ]
                                         , Html.input [ Html.Attributes.value (globalState |> message.get), Html.Events.onInput (\value -> globalState |> message.set value) ] []
                                         ]

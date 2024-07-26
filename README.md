@@ -12,3 +12,4 @@ main =
 ```
 
 I claim that I'm getting close.
+See `src/DirectApplyFinallyModelAndInitialState.elm` for the latest iteration.

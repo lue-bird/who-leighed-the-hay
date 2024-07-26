@@ -45,7 +45,7 @@ leighToProgram =
         let
             initialStateAndInterface : { initialState : state, interface : state -> Html.Html state }
             initialStateAndInterface =
-                leigh modelTransitionIdentity
+                leigh modelTranslationIdentity
         in
         Browser.element
             { init = \() -> ( initialStateAndInterface.initialState, Cmd.none )
@@ -55,8 +55,8 @@ leighToProgram =
             }
 
 
-modelTransitionIdentity : ModelTranslation a a
-modelTransitionIdentity =
+modelTranslationIdentity : ModelTranslation a a
+modelTranslationIdentity =
     { alterSub = \f -> f
     , toSub = identity
     }
@@ -79,7 +79,7 @@ state initialState withStateUpdater translateAOtherFieldsToModel =
 
         modelTranslation : ModelTranslation otherFields model
         modelTranslation =
-            modelTransitionCompose tupleSecondModelTransition translateAOtherFieldsToModel
+            modelTranslationCompose tupleSecondModelTranslation translateAOtherFieldsToModel
 
         translatedUpdater : Updater a model
         translatedUpdater =
@@ -93,15 +93,15 @@ state initialState withStateUpdater translateAOtherFieldsToModel =
     }
 
 
-tupleSecondModelTransition : ModelTranslation second ( first, second )
-tupleSecondModelTransition =
+tupleSecondModelTranslation : ModelTranslation second ( first, second )
+tupleSecondModelTranslation =
     { alterSub = Tuple.mapSecond
     , toSub = Tuple.second
     }
 
 
-modelTransitionCompose : ModelTranslation subSub sub -> ModelTranslation sub whole -> ModelTranslation subSub whole
-modelTransitionCompose subSubToSub subToWhole =
+modelTranslationCompose : ModelTranslation subSub sub -> ModelTranslation sub whole -> ModelTranslation subSub whole
+modelTranslationCompose subSubToSub subToWhole =
     { alterSub = \alterInner -> subToWhole.alterSub (subSubToSub.alterSub alterInner)
     , toSub = \whole -> whole |> subToWhole.toSub |> subSubToSub.toSub
     }

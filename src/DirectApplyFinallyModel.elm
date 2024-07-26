@@ -29,11 +29,11 @@ hayMain globalState =
                                     , Html.input [ Html.Attributes.value (globalState |> Just |> getMessage), Html.Events.onInput (\value -> globalState |> setMessage value) ] []
                                     ]
     in
-    leigh modelTransitionIdentity
+    leigh modelTranslationIdentity
 
 
-modelTransitionIdentity : ModelTranslation a a
-modelTransitionIdentity =
+modelTranslationIdentity : ModelTranslation a a
+modelTranslationIdentity =
     { alterSub = \f -> f
     , toSub = identity
     }
@@ -56,7 +56,7 @@ state initialState withStateUpdater translateAOtherFieldsToModel =
 
         modelTranslation : ModelTranslation otherFields model
         modelTranslation =
-            modelTransitionCompose tupleSecondModelTransition translateAOtherFieldsToModel
+            modelTranslationCompose tupleSecondModelTranslation translateAOtherFieldsToModel
 
         translatedUpdater =
             updaterForAAndOtherFields |> translateUpdater translateAOtherFieldsToModel
@@ -64,15 +64,15 @@ state initialState withStateUpdater translateAOtherFieldsToModel =
     withStateUpdater translatedUpdater modelTranslation
 
 
-tupleSecondModelTransition : ModelTranslation second ( first, second )
-tupleSecondModelTransition =
+tupleSecondModelTranslation : ModelTranslation second ( first, second )
+tupleSecondModelTranslation =
     { alterSub = Tuple.mapSecond
     , toSub = Tuple.second
     }
 
 
-modelTransitionCompose : ModelTranslation subSub sub -> ModelTranslation sub whole -> ModelTranslation subSub whole
-modelTransitionCompose subSubToSub subToWhole =
+modelTranslationCompose : ModelTranslation subSub sub -> ModelTranslation sub whole -> ModelTranslation subSub whole
+modelTranslationCompose subSubToSub subToWhole =
     { alterSub = \alterInner -> subToWhole.alterSub (subSubToSub.alterSub alterInner)
     , toSub = \whole -> whole |> subToWhole.toSub |> subSubToSub.toSub
     }

@@ -85,6 +85,7 @@ state initialState withStateUpdater translateAOtherFieldsToModel =
         translatedUpdater =
             updaterForAAndOtherFields |> translateUpdater translateAOtherFieldsToModel
 
+        interfaceAndInitialOtherFieldsState : { initialState : otherFields, interface : interface }
         interfaceAndInitialOtherFieldsState =
             withStateUpdater translatedUpdater modelTranslation
     in

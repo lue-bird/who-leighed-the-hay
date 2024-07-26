@@ -58,6 +58,7 @@ state initialState withStateUpdater translateAOtherFieldsToModel =
         modelTranslation =
             modelTranslationCompose tupleSecondModelTranslation translateAOtherFieldsToModel
 
+        translatedUpdater : Updater a model
         translatedUpdater =
             updaterForAAndOtherFields |> translateUpdater translateAOtherFieldsToModel
     in

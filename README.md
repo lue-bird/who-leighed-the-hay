@@ -12,4 +12,6 @@ main =
 ```
 
 I claim that I got it.
-See `src/FinalSolution.elm`.
+My original solution can be found in `src/FinalSolution.elm`.
+
+A better, simplified attempt is located at `src/FinalSolutionSimplified.elm`

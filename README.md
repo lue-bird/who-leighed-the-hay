@@ -14,8 +14,8 @@ main =
 I claim that I got it. Here's how it looks with my solution:
 ```elm
 main =
-  state 0 <| \( count, setCount ) ->
-    state "" <| \( message, setMessage ) ->
+  state 0 <| \count setCount ->
+    state "" <| \message setMessage ->
       render <| \model ->
         Html.div []
           [ Html.button [ Html.Events.onClick <| setCount (count model + 1) model ] [ Html.text "+" ]
@@ -29,6 +29,7 @@ My original solution can be found in `src/FinalSolution.elm`.
   - a better, simplified attempt is located at `src/FinalSolutionSimplified.elm`
   - a version that converts any of these functions into runnable elm programs is located at `src/FinalSolutionSimplifiedAbstracted.elm`
   - a version that additionally uses tuples instead of records for get,set is located at `src/FinalSolutionSimplifiedAbstractedWithTuples.elm`
+  - a version that additionally uses 2 arguments instead of records for get,set is located at `src/FinalSolutionSimplifiedAbstractedWithArguments.elm`
 
 To run:
 ```bash

@@ -26,6 +26,14 @@ main =
     counterLeigh |> leighToProgram
 
 
+type alias State =
+    ( Int, ( String, () ) )
+
+
+
+--
+
+
 type alias LeighProgram state =
     ModelTranslation state state
     -> { initialState : state, interface : state -> Html.Html state }
@@ -45,10 +53,6 @@ leighToProgram =
             , update = \newState _ -> ( newState, Cmd.none )
             , subscriptions = \_ -> Sub.none
             }
-
-
-type alias State =
-    ( Int, ( String, () ) )
 
 
 modelTransitionIdentity : ModelTranslation a a

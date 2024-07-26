@@ -14,10 +14,11 @@ main =
 I claim that I got it.
 My original solution can be found in `src/FinalSolution.elm`.
 
-A better, simplified attempt is located at `src/FinalSolutionSimplified.elm`
+A better, simplified attempt is located at `src/FinalSolutionSimplified.elm`,
+a version that converts any of these functions into runnable elm programs is located at `src/FinalSolutionSimplifiedAbstracted.elm`
 
 To run:
 ```bash
 elm reactor
 ```
-then click on `src/FinalSolution.elm` or `src/FinalSolutionSimplified.elm`.
+then click on `src/FinalSolution.elm` or some other file.

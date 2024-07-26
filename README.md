@@ -11,7 +11,19 @@ main =
           ]
 ```
 
-I claim that I got it.
+I claim that I got it. Here's how it looks with my solution:
+```elm
+main =
+  state 0 <| \( count, setCount ) ->
+    state "" <| \( message, setMessage ) ->
+      render <| \model ->
+        Html.div []
+          [ Html.button [ Html.Events.onClick <| setCount (count model + 1) model ] [ Html.text "+" ]
+          , Html.p [] [ Html.text <| String.fromInt <| count model ]
+          , Html.input [ Html.Attributes.value (message model), Html.Events.onInput (\value -> setMessage value model) ] []
+          ]
+```
+
 My original solution can be found in `src/FinalSolution.elm`.
 
   - a better, simplified attempt is located at `src/FinalSolutionSimplified.elm`

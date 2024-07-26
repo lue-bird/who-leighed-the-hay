@@ -15,3 +15,9 @@ I claim that I got it.
 My original solution can be found in `src/FinalSolution.elm`.
 
 A better, simplified attempt is located at `src/FinalSolutionSimplified.elm`
+
+To run:
+```bash
+elm reactor
+```
+then click on `src/FinalSolution.elm` or `src/FinalSolutionSimplified.elm`.
